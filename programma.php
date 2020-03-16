@@ -132,7 +132,9 @@ if ($result->num_rows > 0) {
         echo "<td>".$row['zenderID']. "</td>";
         echo "<td>".$row['zenderID']. "</td>";
         echo "<td>". "<a href=\"index.php\">Wijzig</a>  " . "</td>";
-        echo "<td>". "<a href=\"index.php\">Verwijder</a>  " . "</td>";
+        echo "<td>". "<a href='back/back_verwijder_programma.php?programmanaam=$row[programmaNaam]'>Verwijder</a>  " . "</td>";
+
+
         echo "</tr>";
     }
 } else {
