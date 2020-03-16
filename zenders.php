@@ -17,6 +17,11 @@ include_once "back/conn.php"
     <title>Document</title>
 </head>
 <style>
+    /*  ↓↓↓↓navbar↓↓↓↓ */
+    body{
+        padding: 0;
+        margin: 0;
+    }
     ul {
         list-style-type: none;
         margin: 0;
@@ -42,6 +47,8 @@ include_once "back/conn.php"
         background-color: #111;
     }
 
+    /*De rest*/
+
     #form {
         width: 35%;
         margin: 0 auto;
@@ -58,7 +65,16 @@ include_once "back/conn.php"
         border: 1px black solid;
 
     }
+    #header{
+        text-align: center;
+    }
+    #link_toevoegen{
 
+        text-decoration: none;
+    }
+    #zender_links{
+        text-align: center;
+    }
 
 
 </style>
@@ -78,15 +94,11 @@ if ($result->num_rows > 0) {
 ?>
 
 
-<img src="IMG/flooop.png" alt="logo">
+<?php
+include_once"navbar.php";
+?>
 
-<ul>
-    <li><a href="index.php">Home</a></li>
-    <li><a href="contact.php">Contact</a></li>
-    <li><a href="zenders.php">Zenders</a></li>
-</ul>
-
-
+<h1 id="header">Dit zijn alle zenders</h1>
 <table id="table1">
     <?php
 
@@ -100,7 +112,10 @@ if ($result->num_rows > 0) {
             if ($counter % 3 == 1) {
                 echo '<tr>';
             }
-            echo "<td>" . $row['zendernaam'] . "<br><a href='zenders.php?zendernaam=$row[zendernaam]'>programmaoverzicht</a><br>"."<a  href='back/back-delete.php?zendernaam=$row[zendernaam]'>verwijder</a>"."</td>";
+            echo "<td>" . $row['zendernaam'] . "<br><a href='programma.php?zendernaam=$row[zendernaam]'>programmaoverzicht</a><br>".
+                "<a  href='back/back_verwijder.php?zendernaam=$row[zendernaam]'>verwijder</a><br>".
+                "<a href='wijzig.php?zendernaam=$row[zendernaam]'>Edit</a>
+"."</td>";
             if ($counter % 3 == 0) {
                 echo '</tr>';
             }
@@ -111,19 +126,18 @@ if ($result->num_rows > 0) {
     }
     ?>
 
-    <form action="back/back-add.php" method="post">
-        <div id="form">
-            <h1>Zender toevoegen</h1>
-            <label for="">Naam van de zender</label><br><input type="text"class="gegevens" name="zendernaam" required value=""><br><br><br>
-            <label for="">Omschrijving</label><br><input type="text" class="gegevens" name="zenderomschrijving" required value="">             <br>
-            <br>
-            <input type="submit" class="submit" value="Toevoegen"><br>
 
-        </div>
-    </form>
 
     <div id="1" >
          </div>
+</table>
 
+<div id="zender_links">
+    <a id="link_toevoegen" href="zender_toevoegen.php">Zender toevoegen!</a><br><br>
+    <a id="link_toevoegen" href="wijzig.php">Zender wijzigen!</a><br><br>
+    <a id="link_toevoegen" href="zender_toevoegen.php">Zender verwijderen!</a><br><br>
+
+
+</div>
 </body>
 </html>

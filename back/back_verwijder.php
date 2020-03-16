@@ -17,10 +17,11 @@ echo $Znaam."<br>";
 
 
 
-$sql = "delete from zender where zendernaam='$Znaam'";
+$sql = "delete from zender where zendernaam='$Znaam';";
 
 if ($conn->query($sql) == true){
     header("location:../zenders.php");
+
 
 }else{
     echo "Er is iets fout gegaan, probeer het opnieuw.<br><br>";

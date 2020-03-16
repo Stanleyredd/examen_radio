@@ -19,9 +19,11 @@
     <title>Document</title>
     <style>
 
-
-
-
+        /*  ↓↓↓↓navbar↓↓↓↓ */
+        body{
+            padding: 0;
+            margin: 0;
+        }
         ul {
             list-style-type: none;
             margin: 0;
@@ -46,6 +48,8 @@
         li a:hover {
             background-color: #111;
         }
+
+
 
 
 
@@ -95,15 +99,9 @@
     </style>
 </head>
 <body>
-<img src="IMG/flooop.png" alt="logo">
-
-
-<ul>
-    <li><a href="index.php">Home</a></li>
-    <li><a href="contact.php">Contact</a></li>
-    <li><a href="zenders.php">Zenders</a></li>
-</ul>
-
+<?php
+include_once"navbar.php";
+?>
 
 <div class="grid-container">
     <div class="item2">
