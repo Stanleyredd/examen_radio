@@ -1,3 +1,9 @@
+<?php
+include "back/conn.php";
+
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -38,6 +44,27 @@ body{
         }
 
 
+#form {
+    width: 35%;
+    margin: 0 auto;
+    margin-top: 10px;
+    border: 1px black solid;
+    text-align: center;
+}
+
+#table1 {
+    margin: 50px auto;
+}
+
+td {
+    border: 1px black solid;
+
+}
+
+.zender_naam{
+    background-color: teal;
+    text-align: left;
+}
 
 
     </style>
@@ -48,5 +75,41 @@ body{
 <?php
 include_once"navbar.php";
 ?>
+
+<div>
+    <form action='back/back_contact.php' method="post">
+        <div id="form">
+            <h1>Nummer wijzigen</h1>
+
+            <label for="">Onderwerp</label><br><input type="text" name="onderwerp" value="">
+            <br><br><br>
+
+            <label for="">Vraag</label><br>
+            <textarea name="vraag" cols="30" rows="10"></textarea>
+                <br><br>
+            <label for="">E-mail</label><br>
+            <input type="email" required name="email" value="">
+            <br><br><br><?php
+            include_once"navbar.php";
+
+            $ok = isset($_GET['gelukt']);
+
+            //Insert this code where you wanted to show the msg
+            if($ok)  {
+                echo '<div class="alert alert-success" role="alert" style="color: forestgreen">
+             Uw vraag is opgestuurt
+           </div>';
+            }
+
+            ?>
+            <input type="submit" class="submit" value="Verstuur"><br>
+        </div>
+    </form>
+
+</div>
+
+
+
+
 </body>
 </html>
