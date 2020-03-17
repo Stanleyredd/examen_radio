@@ -83,6 +83,7 @@ $znaam = $_GET["zendernaam"];
 
 
 
+
 $sql2 = "select zenderID from zender where zenderNaam='$znaam'";
 $result = $conn->query($sql2);
 
@@ -101,9 +102,12 @@ $conn->close();
 ?>
 
 <h1 id="header">Het programma van zender: <?php echo "$znaam";?></h1>
+<?php echo "<a id='id_error' href='programma_toevoegen.php?zendernaam=$znaam'>toevoegen</a>"; ?>
+
 <table id="table1">
 
     <?php
+
     echo "<tr>";
     echo "<td class='text'>".'<h3>Programma</h3>'."</td>";
     echo "<td class='text'>". '<h3>Datum</h3>'. "</td>";
@@ -128,10 +132,10 @@ if ($result->num_rows > 0) {
         echo "<tr>";
         echo "<td>".$row['programmaNaam']. "</td>";
         echo "<td>".$row['datum']. "</td>";
-        echo "<td>".$row['zenderID']. "</td>";
-        echo "<td>".$row['zenderID']. "</td>";
-        echo "<td>".$row['zenderID']. "</td>";
-        echo "<td>". "<a href=\"index.php\">Wijzig</a>  " . "</td>";
+        echo "<td>".$row['begintijd']." - " .$row['eindtijd'] . "</td>";
+        echo "<td>"."x". "</td>";
+        echo "<td>".$row['presentatie']. "</td>";
+        echo "<td>". "<a href=\"wijzig_programma.php?programmanaam=$row[programmaNaam]\">Wijzig</a>  " . "</td>";
         echo "<td>". "<a href='back/back_verwijder_programma.php?programmanaam=$row[programmaNaam]'>Verwijder</a>  " . "</td>";
 
 
@@ -140,7 +144,7 @@ if ($result->num_rows > 0) {
 } else {
     echo "<div id='id_error'>";
     echo "<p>Deze zender heeft nog geen programma</p>";
-    echo "<a href='programma_add'>Klik hier om een programma te maken!</a>";
+    echo "<a href='programma_toevoegen.php?zendernaam=$znaam'>toevoegen</a>";
     echo "</div>";
 }
 $DBConnect->close();

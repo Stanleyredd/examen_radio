@@ -75,6 +75,9 @@ include_once "back/conn.php"
     #zender_links{
         text-align: center;
     }
+    a{
+        text-decoration: none;
+    }
 
 
 </style>
@@ -112,8 +115,8 @@ include_once"navbar.php";
             if ($counter % 3 == 1) {
                 echo '<tr>';
             }
-            echo "<td>" . $row['zendernaam'] . "<br><a href='programma.php?zendernaam=$row[zendernaam]'>programmaoverzicht</a><br>".
-                "<a  href='back/back_verwijder.php?zendernaam=$row[zendernaam]'>verwijder</a><br>".
+            echo "<td>" . "<h4>" .$row['zendernaam']. "</h4>" . "<br><a href='programma.php?zendernaam=$row[zendernaam]'>Programmaoverzicht</a><br>".
+                "<a  href='back/back_verwijder.php?zendernaam=$row[zendernaam]'>Verwijder</a><br>".
                 "<a href='wijzig.php?zendernaam=$row[zendernaam]'>Edit</a>
 "."</td>";
             if ($counter % 3 == 0) {

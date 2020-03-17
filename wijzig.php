@@ -110,7 +110,7 @@ $conn->close();
 ?>
 
 <table id="table1">
-    <form action="back/back_wijzig.php?zenderID=$zenderID" method="post">
+    <form action="back/back_wijzig.php" method="post">
         <div id="form">
             <label hidden aria-hidden="true" for="">zenderID: </label>      <input aria-hidden="true" type="text" class="gegevens" name="zenderID" hidden value="<?php echo $zenderID; ?>">
 
