@@ -85,14 +85,7 @@ include_once "back/conn.php"
 
 <?php
 
-$query = "select zenderID, zendernaam, omschrijving from zender";
-$result = $conn->query($query);
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
 
-
-    }
-}
 
 ?>
 
@@ -131,16 +124,13 @@ include_once"navbar.php";
 
 
 
-    <div id="1" >
-         </div>
+
 </table>
 
 <div id="zender_links">
     <a id="link_toevoegen" href="zender_toevoegen.php">Zender toevoegen!</a><br><br>
     <a id="link_toevoegen" href="wijzig.php">Zender wijzigen!</a><br><br>
     <a id="link_toevoegen" href="zender_toevoegen.php">Zender verwijderen!</a><br><br>
-
-
 </div>
 </body>
 </html>

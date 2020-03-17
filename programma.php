@@ -18,9 +18,13 @@ include_once "back/conn.php"
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        /**{*/
+            /*border: 1px black dotted;*/
+        /*}*/
         body{
             padding: 0;
             margin: 0;
+
         }
         ul {
             list-style-type: none;
@@ -71,9 +75,15 @@ include_once "back/conn.php"
         #header{
             text-align: center;
         }
+        a{
+            text-decoration: none;
+            text-align: right
+        }
         #id_error{
             text-align: center;
         }
+
+
     </style>
 </head>
 <body>
@@ -102,8 +112,9 @@ $conn->close();
 ?>
 
 <h1 id="header">Het programma van zender: <?php echo "$znaam";?></h1>
-<?php echo "<a id='id_error' href='programma_toevoegen.php?zendernaam=$znaam'>toevoegen</a>"; ?>
-
+<div id="header">
+<?php echo "<a id='id_error' href='programma_toevoegen.php?zendernaam=$znaam'>Programma toevoegen</a>"; ?>
+</div>
 <table id="table1">
 
     <?php
@@ -144,7 +155,6 @@ if ($result->num_rows > 0) {
 } else {
     echo "<div id='id_error'>";
     echo "<p>Deze zender heeft nog geen programma</p>";
-    echo "<a href='programma_toevoegen.php?zendernaam=$znaam'>toevoegen</a>";
     echo "</div>";
 }
 $DBConnect->close();
