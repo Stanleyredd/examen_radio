@@ -112,8 +112,57 @@ $conn->close();
 ?>
 
 <h1 id="header">Het programma van zender: <?php echo "$znaam";?></h1>
+
 <div id="header">
-<?php echo "<a id='id_error' href='programma_toevoegen.php?zendernaam=$znaam'>Programma toevoegen</a>"; ?>
+<?php echo "<a id='id_error' href='programma_toevoegen.php?zendernaam=$znaam'>Programma toevoegen</a>"; ?><br><br>
+
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2" style="margin-top: 5%;">
+            <div class="row">
+
+                <?php
+
+                $conn = new mysqli('localhost', 'root', '', 'mydb');
+                if(isset($_GET['search'])){
+                    $searchKey = $_GET['search'];
+                    $sql = "SELECT * FROM programma WHERE programmaNaam LIKE '%$searchKey%' OR  presentatie LIKE '%$searchKey%'";
+                }else
+                    $sql = "SELECT * FROM nummer";
+                $result = $conn->query($sql);
+                ?>
+
+                <form action="" method="GET">
+                    <div class="col-md-6">
+                        <input type="text" name="search" class='form-control' placeholder="Search By Name" value=<?php echo @$_GET['search']; ?> >
+                    </div>
+                    <div class="col-md-6 text-left">
+                        <button class="btn">Search</button>
+                    </div>
+                </form>
+
+                <br>
+                <br>
+            </div>
+
+            <div>
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Name</th>
+                        <th>Amount</th>
+
+                    </tr>
+                    <?php while( $row = $result->fetch_object() ): ?>
+                        <tr>
+                            <td><?php echo $row->programmaNaam ?></td>
+                            <td><?php echo $row->presentatie ?></td>
+                        </tr>
+                    <?php endwhile; ?>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 <table id="table1">
 
