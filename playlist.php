@@ -75,12 +75,43 @@ include "back/conn.php";
 <body>
 <?php
 include "navbar.php";
+
+
+
+
 ?>
 <div id="toevoegen_div">
+    <form action="playlist.php">
     <a href="playlist_toevoegen.php"><h3>Playlist toevoegen</h3></a>
-</div>
-<table id="table1">
 
+</div>
+
+<table id="table1">
+    <?php
+    $DBConnect = new mysqli("localhost","root","","mydb");
+    $sql = "select distinct(playlistNaam) as playlistDis from playlist";
+    $result = $DBConnect->query($sql);
+
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        $select= '<select name="select">';
+        while($row = $result->fetch_assoc()) {
+            $playlist = $row['playlistDis'];
+            $select.='<option value="'.'">'.$row['playlistDis'].'</option>';
+            echo $playlist;
+        }
+    } else {
+
+    }$select.='</select>';
+    echo $select;
+
+
+    $DBConnect->close();
+
+
+
+    ?>
     <?php
 
     echo "<tr>";
@@ -96,7 +127,7 @@ include "navbar.php";
 nummer.nummerID from 
 nummer left join playlist on 
 playlist.nummer_nummerID=nummer.nummerID where 
-playlistNaam = 'dancehour'";
+playlistNaam = '$playlist'";
     $result = $DBConnect->query($sql);
 
     if ($result->num_rows > 0) {
@@ -125,7 +156,8 @@ playlistNaam = 'dancehour'";
     ?>
 <?php
     $DBConnect = new mysqli("localhost","root","","mydb");
-    $sql_total = "SELECT  SEC_TO_TIME( SUM( TIME_TO_SEC( duur ) ) ) AS timeSum FROM nummer";
+    $sql_total = "SELECT  SEC_TO_TIME( SUM( TIME_TO_SEC( nummer.duur ) ) ) AS timeSum  
+FROM nummer left join playlist on nummer.nummerID=playlist.nummer_nummerID where playlist.playlistNaam = '$playlist' ;";
 //    $sql_total = "SELECT SUM(duur)AS timeSum FROM nummer";
     $result = $DBConnect->query($sql_total);
 
@@ -153,8 +185,6 @@ playlistNaam = 'dancehour'";
 ?>
 
 </table>
-
-
 
 
 </body>
