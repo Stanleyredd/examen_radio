@@ -129,7 +129,7 @@ $conn->close();
                     $searchKey = $_GET['search'];
                     $sql = "SELECT * FROM programma WHERE programmaNaam LIKE '%$searchKey%' OR  presentatie LIKE '%$searchKey%'";
                 }else
-                    $sql = "SELECT * FROM nummer";
+                    $sql = "SELECT * FROM programma";
                 $result = $conn->query($sql);
                 ?>
 
