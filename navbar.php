@@ -16,6 +16,7 @@
     <li><a href="contact.php">Contact</a></li>
     <li><a href="zenders.php">Zenders</a></li>
     <li><a href="nummers.php">Nummers</a></li>
+    <li><a href="playlist.php">Playlist</a></li>
 </ul>
 
 
