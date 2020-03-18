@@ -10,7 +10,6 @@ include "conn.php";
 
 ?>
 <?php
-
     $titel = $_GET["titel"];
 
     $sql2 = "select nummerID, artiest, duur from nummer where titel='$titel'";
@@ -20,39 +19,19 @@ include "conn.php";
     // output data of each row
     while ($row = $result->fetch_assoc()) {
     $nummerID = $row['nummerID'];
-
-
-
     }
     }else{
     $conn->error;
-
-
     }
     $conn->close();
-
-
-
     ?>
-
-
 <?php
-
-
-
-
 echo $nummerID."<br>";
-
-
-
-
 $DBConnect = new mysqli("localhost","root","","mydb");
-
 $sql = "delete from nummer where nummerID='$nummerID';";
 
 if ($DBConnect->query($sql) == true){
     header("location:../nummers.php");
-
 
 }else{
     echo "Er is iets fout gegaan, probeer het opnieuw.<br><br>";

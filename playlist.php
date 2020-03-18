@@ -81,8 +81,8 @@ include "navbar.php";
 
 ?>
 <div id="toevoegen_div">
-    <form action="playlist.php">
     <a href="playlist_toevoegen.php"><h3>Playlist toevoegen</h3></a>
+    <a href="toevoegen_aan_playlist.php"><h3>Nummer toevoegen aan Playlist</h3></a>
 
 </div>
 
@@ -95,16 +95,17 @@ include "navbar.php";
 
     if ($result->num_rows > 0) {
         // output data of each row
-        $select= '<select name="select">';
+//        $select= '<select name="select">';
         while($row = $result->fetch_assoc()) {
             $playlist = $row['playlistDis'];
-            $select.='<option value="'.'">'.$row['playlistDis'].'</option>';
-            echo $playlist;
+//            $select.='<option value="$row[playlistDis]">'.$row['playlistDis'].'</option>';
+//            echo $playlist;
         }
     } else {
 
-    }$select.='</select>';
-    echo $select;
+    }
+//    $select.='</select>';
+//    echo $select;
 
 
     $DBConnect->close();
@@ -118,6 +119,7 @@ include "navbar.php";
     echo "<td class='text'>".'<h3>artiest</h3>'."</td>";
     echo "<td class='text'>". '<h3>Song</h3>'. "</td>";
     echo "<td class='text'>".'<h3>Duur</h3>'. "</td>";
+    echo "<td class='text'>".'<h3></h3>'. "</td>";
 
     echo "</tr>";
 
@@ -141,7 +143,7 @@ playlistNaam = '$playlist'";
             echo "<td>".$row['duur']. "</td>";
 
 //            echo "<td>". "<a href='wijzig_nummer.php'>Wijzig</a>  " . "</td>";
-//            echo "<td>". "<a href='back/back_verwijder_nummer.php'>Verwijder</a>  " . "</td>";
+            echo "<td>". "<a href='back/back_verwjnder_nummer_from_playlist.php?titel=$row[titel]'>Verwijder</a>  " . "</td>";
 
 
 
@@ -178,6 +180,7 @@ FROM nummer left join playlist on nummer.nummerID=playlist.nummer_nummerID where
 
         echo "<td style='text-align: right'>Totaal</td>";
         echo "<td>$timeSum</td>";
+        echo "<td></td>";
         echo "</tr>";
 
 
@@ -185,6 +188,8 @@ FROM nummer left join playlist on nummer.nummerID=playlist.nummer_nummerID where
 ?>
 
 </table>
+
+
 
 
 </body>
