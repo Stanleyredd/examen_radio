@@ -126,20 +126,5 @@ $conn->close();
     <div id="1" >
     </div>
 </table>
-
-
-
-
-
-
-
-
 </body>
 </html>
-
-
-
-
-
-
-

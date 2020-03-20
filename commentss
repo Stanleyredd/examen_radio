@@ -1,0 +1,38 @@
+<?php
+
+    echo "<tr>";
+    echo "<td class='text'>".'<h3>Titel</h3>'."</td>";
+    echo "<td class='text'>". '<h3>Artiest</h3>'. "</td>";
+    echo "<td class='text'>".'<h3>Duur</h3>'. "</td>";
+    echo "<td>".'<h3></h3>'. "</td>";
+    echo "<td>".'<h3></h3>'. "</td>";
+    echo "</tr>";
+
+
+    $DBConnect = new mysqli("localhost","root","","mydb");
+    $sql = "Select * from nummer";
+    $result = $DBConnect->query($sql);
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+
+
+            echo "<tr>";
+            echo "<td>".$row['titel']. "</td>";
+            echo "<td>".$row['artiest']. "</td>";
+            echo "<td>".$row['duur']. "</td>";
+
+            echo "<td>". "<a href='wijzig_nummer.php?titel=$row[titel]'>Wijzig</a>  " . "</td>";
+            echo "<td>". "<a href='back/back_verwijder_nummer.php?titel=$row[titel]'>Verwijder</a>  " . "</td>";
+
+
+            echo "</tr>";
+        }
+    } else {
+        echo "<div id='id_error'>";
+        echo "<p></p>";
+        echo "</div>";
+    }
+    $DBConnect->close();
+    ?>

@@ -23,7 +23,9 @@ include "back/conn.php";
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-
+        *{
+            /*border: 1px black dotted;*/
+        }
         /*  ↓↓↓↓navbar↓↓↓↓ */
         body{
             padding: 0;
@@ -53,8 +55,13 @@ include "back/conn.php";
         li a:hover {
             background-color: #111;
         }
-        #table1 {
+        .container{
+            text-align: center;
+        }
+        table.table1 {
             margin: 50px auto;
+            text-align: center;
+            text-decoration: none;
         }
 
 
@@ -70,12 +77,16 @@ include "back/conn.php";
 
         }
 
+
     </style>
 </head>
 <body>
 <?php
 include "navbar.php";
-?>
+?> <div id="toevoegen_div">
+    <a href="nummer_toevoegen.php"><h3>Nummer toevoegen</h3></a>
+
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2" style="margin-top: 5%;">
@@ -92,34 +103,46 @@ include "navbar.php";
                 $result = $conn->query($sql);
                 ?>
 
+
+
                 <form action="" method="GET">
                     <div class="col-md-6">
-                        <input type="text" name="search" class='form-control' placeholder="Search By Name" value=<?php echo @$_GET['search']; ?> >
+                        <label for="">Typ het nummer dat je zoekt!</label><br><br>
+                        <input type="text" name="search" class='form-control' placeholder="Zoek hier" value=<?php echo @$_GET['search']; ?> ><br><br>
                     </div>
                     <div class="col-md-6 text-left">
-                        <button class="btn">Search</button>
+                        <button class="btn">Zoek!</button>
                     </div>
                 </form>
 
-                <br>
-                <br>
+
             </div>
 
             <div>
-                <table class="table table-bordered">
+                <div class="table1">
+                <table class="table1">
                     <tr>
-                        <th>Name</th>
-                        <th>Amount</th>
-                        <th>City</th>
+                        <th>Titel</th>
+                        <th>Nummer</th>
+                        <th>Duur</th>
+                        <th>Wijzig</th>
+                        <th>Verwijder</th>
                     </tr>
-                    <?php while( $row = $result->fetch_object() ): ?>
+                    <?php while($row = $result->fetch_object() ): ?>
                         <tr>
                             <td><?php echo $row->titel ?></td>
                             <td><?php echo $row->artiest ?></td>
                             <td><?php echo $row->duur ?></td>
+
+                            <td><a href='wijzig_nummer.php?titel=<?php
+                                 $titel = $row->titel; echo $titel ?>'>Wijzig</a></td>
+                            <td><a href='back/back_verwijder_nummer.php?titel=<?php
+                                $titel = $row->titel; echo $titel ?>''>Verwijder</a></td>
+
                         </tr>
                     <?php endwhile; ?>
                 </table>
+                </div>
             </div>
         </div>
     </div>
@@ -128,54 +151,7 @@ include "navbar.php";
     <a href="nummer_toevoegen.php"><h3>Nummer toevoegen</h3></a>
 
 </div>
-<table id="table1">
 
-    <?php
-
-    echo "<tr>";
-    echo "<td class='text'>".'<h3>Titel</h3>'."</td>";
-    echo "<td class='text'>". '<h3>Artiest</h3>'. "</td>";
-    echo "<td class='text'>".'<h3>Duur</h3>'. "</td>";
-    echo "<td>".'<h3></h3>'. "</td>";
-    echo "<td>".'<h3></h3>'. "</td>";
-    echo "</tr>";
-
-
-    $DBConnect = new mysqli("localhost","root","","mydb");
-    $sql = "Select * from nummer";
-    $result = $DBConnect->query($sql);
-
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-
-
-            echo "<tr>";
-            echo "<td>".$row['titel']. "</td>";
-            echo "<td>".$row['artiest']. "</td>";
-            echo "<td>".$row['duur']. "</td>";
-
-            echo "<td>". "<a href='wijzig_nummer.php?titel=$row[titel]'>Wijzig</a>  " . "</td>";
-            echo "<td>". "<a href='back/back_verwijder_nummer.php?titel=$row[titel]'>Verwijder</a>  " . "</td>";
-
-
-            echo "</tr>";
-        }
-    } else {
-        echo "<div id='id_error'>";
-        echo "<p></p>";
-        echo "</div>";
-    }
-    $DBConnect->close();
-    ?>
-
-
-
-
-
-
-
-</table>
 
 
 
@@ -183,16 +159,3 @@ include "navbar.php";
 </body>
 </html>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>PHP Search</title>
-    <style>
-
-    </style>
-</head>
-<body>
-
-</body>
-</html>

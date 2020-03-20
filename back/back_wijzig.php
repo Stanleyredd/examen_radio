@@ -31,7 +31,7 @@ if ($znaam2 == ""){
 
 
 if ($conn->query($sql) == true){
-//    header("location:../zenders.php");
+    header("location:../zenders.php");
 
 }else{
     echo "Er is iets fout gegaan, probeer het opnieuw.<br><br>";

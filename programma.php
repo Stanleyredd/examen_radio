@@ -180,7 +180,7 @@ $conn->close();
 
 
     $DBConnect = new mysqli("localhost","root","","mydb");
-$sql = "select programma.programmaNaam, programma.datum, programma.begintijd, programma.eindtijd, programma.presentatie, programma.zenderID, zender.zenderID from programma
+$sql = "select programma.programmaNaam, programma.datum, programma.begintijd, programma.eindtijd, programma.presentatie, programma.zenderID, zender.zenderID, round(time_to_sec(programma.eindtijd-programma.begintijd)/60) as aantal_minuten from programma
 left join zender on zender.zenderID = programma.zenderID where zender.zenderID = '$zenderID' ORDER BY programma.datum DESC;";
 $result = $DBConnect->query($sql);
 
@@ -193,7 +193,7 @@ if ($result->num_rows > 0) {
         echo "<td>".$row['programmaNaam']. "</td>";
         echo "<td>".$row['datum']. "</td>";
         echo "<td>".$row['begintijd']." - " .$row['eindtijd'] . "</td>";
-        echo "<td>"."x". "</td>";
+        echo "<td>".$row['aantal_minuten']. " Minuten". "</td>";
         echo "<td>".$row['presentatie']. "</td>";
         echo "<td>". "<a href=\"wijzig_programma.php?programmanaam=$row[programmaNaam]\">Wijzig</a>  " . "</td>";
         echo "<td>". "<a href='back/back_verwijder_programma.php?programmanaam=$row[programmaNaam]'>Verwijder</a>  " . "</td>";
